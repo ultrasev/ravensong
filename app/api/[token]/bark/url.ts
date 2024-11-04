@@ -1,18 +1,7 @@
 import { parseSecrets } from "@/lib/parser";
 
-
 export class BarkUrl {
-  private readonly DEVICE_ADDRESSES = parseSecrets(
-    process.env.BARK_DEVICE_ADDRESSES ?? ""
-  );
-
-  parse(params: URLSearchParams): string {
-    const device = params.get("device");
-    const endpointUrl = device
-      ? this.DEVICE_ADDRESSES[device as keyof typeof this.DEVICE_ADDRESSES]
-      : null;
-    if (!endpointUrl) return "";
-
+  parse(params: URLSearchParams, endpointUrl: string): string {
     const title = params.get("title") || "";
     const message = params.get("message") || "";
     const barkUrl = new URL(
