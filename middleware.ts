@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/utils/supabase/middleware";
+import { handleForwardRules } from "@/utils/forward-rules";
 
 // Define a whitelist of paths
 const WHITELISTED_PATHS = [
@@ -9,6 +10,7 @@ const WHITELISTED_PATHS = [
   "/en/refund",
   "/en/tos",
   "/api",
+  "/bark",
   "/en/privacy",
   "/en/faq",
   "/zh/refund",
@@ -18,12 +20,24 @@ const WHITELISTED_PATHS = [
 ];
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, searchParams } = request.nextUrl;
+
   if (pathname === "/") {
     return NextResponse.redirect(new URL("/en", request.url));
   }
 
-  // Check if the request path is in the whitelist
+  // Handle forwarding rules
+  const forwardUrl = handleForwardRules(
+    pathname,
+    process.env.BARK_FORWARD_RULES,
+    request.nextUrl.search,
+    request.url
+  );
+  if (forwardUrl) {
+    return NextResponse.rewrite(forwardUrl);
+  }
+
+  // Check whitelist paths
   if (WHITELISTED_PATHS.some((path) => pathname.startsWith(path))) {
     return;
   }
