@@ -1,6 +1,8 @@
 import { Locale } from "@/lib/i18n-config";
-import { goblin } from "@/app/ui/Font";
+import { eagle_lake } from "@/app/ui/Font";
+
 export const runtime = "edge";
+
 function CodeExample({ code }: { code: string }) {
   return (
     <div className="relative mb-4">
@@ -20,13 +22,16 @@ const ShortcodeDoc = () => {
   const shortcode_example = "https://raven.cufo.cc/shortcode?title=xxx";
   return (
     <div className="mt-4">
-      <h2 className={`text-2xl font-bold ${goblin.className}`}> Shortcode</h2>
+      <h2 className={`text-2xl font-bold ${eagle_lake.className}`}>
+        {" "}
+        Shortcode
+      </h2>
       <p>
         By manipulating middleware forwarding rules, you can use shortcode to
         send notification. The shortcode is defined in cloudflare secrets.
       </p>
       <CodeExample code={shortcode_example.toString()} />
-      <h3 className={`text-xl font-bold ${goblin.className}`}>
+      <h3 className={`text-xl font-bold ${eagle_lake.className}`}>
         Shortcode formats
       </h3>
       <ul className="list-disc list-inside">
@@ -48,7 +53,7 @@ export default async function Home({ params }: { params: { lang: Locale } }) {
   return (
     <div className="flex items-center justify-center max-w-5xl mx-auto">
       <div className="flex flex-col gap-4">
-        <h1 className={`text-4xl font-bold ${goblin.className}`}>Usage</h1>
+        <h1 className={`text-4xl font-bold ${eagle_lake.className}`}>Usage</h1>
         <CodeExample code={code1.toString()} />
         <p>
           For example, if you&apos;re using{" "}

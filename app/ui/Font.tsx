@@ -9,10 +9,22 @@ import {
   Protest_Guerrilla,
   Aclonica,
   Courier_Prime,
+  Eagle_Lake,
 } from "next/font/google";
 import { Noto_Serif_SC } from "next/font/google";
 import { Hachi_Maru_Pop } from "next/font/google";
 import { Nabla } from "next/font/google";
+
+
+// eagle lake
+export const eagle_lake = Eagle_Lake({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-eagle-lake",
+  display: "swap",
+});
+
+
 export const nabla = Nabla({
   subsets: ["latin"],
   weight: "400",
