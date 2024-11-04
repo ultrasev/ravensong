@@ -8,3 +8,10 @@ export async function GET(
 ) {
   return new BarkHandler().handle(request, params.token);
 }
+
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { token: string } }
+) {
+  return new BarkHandler().handle(request, params.token);
+}
