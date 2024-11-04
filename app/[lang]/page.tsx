@@ -3,7 +3,7 @@ import { goblin } from "@/app/ui/Font";
 export const runtime = "edge";
 function CodeExample({ code }: { code: string }) {
   return (
-    <div className="relative mb-8">
+    <div className="relative mb-4">
       <div className="absolute top-3 left-4 flex items-center gap-1">
         <div className="h-3 w-3 rounded-full bg-red-500"></div>
         <div className="h-3 w-3 rounded-full bg-yellow-500"></div>

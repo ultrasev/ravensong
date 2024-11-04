@@ -19,7 +19,7 @@ class EnvParser(dict):
         env_dict = {}
         with open(self.fpath, "r", encoding="utf-8") as f:
             for line in f:
-                line = line.strip()
+                line = line.strip().split("#")[0]
                 if line and not line.startswith("#"):
                     key, value = line.split("=", 1)
                     env_dict[key.strip()] = value.strip().strip('"')
