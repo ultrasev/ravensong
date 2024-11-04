@@ -8,13 +8,13 @@ const WHITELISTED_PATHS = [
   "/proxyshare.conf",
   "/en/refund",
   "/en/tos",
-  "/api/juchatmodels",
+  "/api",
   "/en/privacy",
   "/en/faq",
   "/zh/refund",
   "/zh/tos",
   "/zh/privacy",
-  "/zh/faq"
+  "/zh/faq",
 ];
 
 export async function middleware(request: NextRequest) {
