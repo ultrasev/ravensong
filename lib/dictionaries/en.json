@@ -1,0 +1,22 @@
+{
+  "server": {
+    "welcome": "Welcome"
+  },
+  "copyusage": {
+    "title": "Copy",
+    "description": "Get content from remote"
+  },
+  "pasteusage": {
+    "title": "Paste",
+    "description": "Send content to remote"
+  },
+  "qa": {
+    "title": "FAQs",
+    "q1": "How to use this app?",
+    "a1": "PasteIt allows you to easily share text content between different devices. Here are the steps to use it:\n\n1. Log in to your account: Make sure you're logged into your account on all devices (such as your phone and computer) where you want to use this feature.\n\n2. Copying from phone to computer:\n\n- Copy the text you want to share on your phone.\n\n- Open our app and click the 'Paste' button.\n\n- Switch to your computer, open the app, and click the 'Copy' button.\n\n3. Copying from computer to phone:\n\n- Copy the text you want to share on your computer.\n\n- Click the 'Paste' button in the app on your computer.\n\n- Switch to your phone, open the app, and click the 'Copy' button.\n\n- The text will be automatically retrieved from the remote server. Click the 'Copy Content' button again to copy it to your clipboard."
+  },
+  "counter": {
+    "increment": "Increment",
+    "decrement": "Decrement"
+  }
+}
