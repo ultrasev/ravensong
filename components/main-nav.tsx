@@ -22,81 +22,63 @@ const localText = (lang: string): { [key: string]: string } => {
     case "zh":
       return {
         homepage: "首页",
+        fonts: "字体",
+        about: "关于",
       };
     default:
       return {
         homepage: "Home",
+        fonts: "Fonts",
+        about: "About",
       };
   }
 };
 
+import { young_serif } from "@/app/ui/Font";
 export function MainNav({ items, lang }: MainNavProps) {
-  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-  let dropdownTimer: NodeJS.Timeout;
-
-  const handleMouseEnter = () => {
-    clearTimeout(dropdownTimer);
-    setIsDropdownOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    dropdownTimer = setTimeout(() => {
-      setIsDropdownOpen(false);
-    }, 200); // 延迟关闭下拉菜单，单位为毫秒
-  };
+  const text = localText(lang);
+  console.log("lang in main-nav", lang);
+  console.log("text", text);
 
   return (
-    <div className="relative flex gap-6 md:gap-10">
-      <div
-        className="flex items-center space-x-2"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="inline-block font-bold text-xl font-serif">
-            <Image
-              src="/icons/favicon.ico"
-              alt="favicon"
-              width={32}
-              height={32}
-              className="inline-block rounded-full"
-            />{" "}
-          </span>
-          <span className="ml-2 text-xl font-bold font-serif group transition-colors duration-300">
-            {siteConfig.name}
-            <span className="ml-1 text-gray-800 dark:text-gray-200 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors duration-300">
-              <FontAwesomeIcon icon={faCaretDown} />
-            </span>
+    <div className="container flex h-16 items-center justify-between p-4 backdrop-blur-2xl md:p-8 rounded-lg">
+      <Link href="/" className="flex items-center space-x-2">
+        <span className="inline-block font-bold text-xl font-serif">
+          <Image
+            src="/icons/favicon.ico"
+            alt="favicon"
+            width={32}
+            height={32}
+            className="inline-block rounded-full"
+          />
+        </span>
+        <span className="ml-2 text-xl font-bold font-serif group transition-colors duration-300">
+          {siteConfig.name}
+        </span>
+      </Link>
+
+      <nav className="flex items-center space-x-6">
+        <Link
+          href={`/${lang}/fonts`}
+          className="transition-colors hover:text-foreground/80 text-foreground"
+        >
+          <span
+            className={`ml-2 text-xl font-bold ${young_serif.className} group transition-colors duration-300`}
+          >
+            {text.fonts}
           </span>
         </Link>
-
-        {isDropdownOpen && items?.length && (
-          <nav
-            className="absolute top-full left-0 mt-2 w-40 shadow-lg rounded-lg py-2 z-50 bg-gray-100 dark:bg-gray-500"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+        <Link
+          href={`/${lang}/about`}
+          className="transition-colors hover:text-foreground/80 text-foreground"
+        >
+          <span
+            className={`ml-2 text-xl font-bold ${young_serif.className} group transition-colors duration-300`}
           >
-            <ul>
-              {items.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href={getRef(item)}
-                    className={cn(
-                      "px-4 py-1 block rounded transition-colors duration-300",
-                      "font-serif font-bold text-lg",
-                      "hover:text-blue-600 dark:hover:text-green-600",
-                      item.disabled && "cursor-not-allowed opacity-80"
-                    )}
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
-                    {localText(lang)[item.title]}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        )}
-      </div>
+            {text.about}
+          </span>
+        </Link>
+      </nav>
     </div>
   );
 }

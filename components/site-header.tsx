@@ -4,10 +4,10 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import React, { lazy, Suspense } from "react";
-import { useState, useEffect } from "react";
 import LocaleSwitcher from "./locale-switcher";
 import { useParams } from "next/navigation";
 import { useLanguage } from "./LanguageContext";
+
 
 const Wormhole = () => {
   return (
@@ -34,25 +34,17 @@ const Share = () => {
 };
 
 export function SiteHeader() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { currentLanguage } = useLanguage();
   const lang = currentLanguage;
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
     <header className="sticky top-0 z-40 w-full">
-      <div className="container flex h-16 items-center justify-between p-4 backdrop-blur-2xl md:space-x-4 md:p-8 rounded-lg">
-        <div className="flex items-center">
-          <MainNav items={siteConfig.mainNav} lang={lang} />
-          {/* <Wormhole />
-          <Share /> */}
-        </div>
+      <div className="container flex h-16 items-center justify-between p-4 backdrop-blur-2xl md:p-8 rounded-lg">
+        {/* 左侧 Logo */}
+        <MainNav items={siteConfig.mainNav} lang={lang} />
 
-        <div className="flex items-center space-x-2 md:space-x-4">
-          {/* <SearchIcon /> */}
+        {/* 右侧导航和工具栏 */}
+        <div className="flex items-center space-x-6">
           <ThemeToggle />
           <LocaleSwitcher />
         </div>
