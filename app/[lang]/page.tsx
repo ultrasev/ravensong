@@ -22,16 +22,16 @@ const ShortcodeDoc = () => {
   const shortcode_example = "https://raven.cufo.cc/shortcode?title=xxx";
   return (
     <div className="mt-4">
-      <h1 className={`text-4xl font-bold ${young_serif.className}`}>
+      <h1 className={`text-4xl font-bold ${young_serif.className} mb-4`}>
         {" "}
         Shortcode
       </h1>
-      <p>
+      <p className="mb-4">
         By manipulating middleware forwarding rules, you can use shortcode to
         send notification. The shortcode is defined in cloudflare secrets.
       </p>
       <CodeExample code={shortcode_example.toString()} />
-      <h2 className={`text-2xl font-bold ${young_serif.className}`}>
+      <h2 className={`text-2xl font-bold ${young_serif.className} mb-4`}>
         Shortcode formats
       </h2>
       <ul className="list-disc list-inside">
