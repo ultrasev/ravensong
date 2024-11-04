@@ -10,11 +10,20 @@ import {
   Aclonica,
   Courier_Prime,
   Eagle_Lake,
+  Young_Serif,
 } from "next/font/google";
 import { Noto_Serif_SC } from "next/font/google";
 import { Hachi_Maru_Pop } from "next/font/google";
 import { Nabla } from "next/font/google";
 
+
+// young serif
+export const young_serif = Young_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-young-serif",
+  display: "swap",
+});
 
 // eagle lake
 export const eagle_lake = Eagle_Lake({
