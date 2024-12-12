@@ -52,10 +52,12 @@ export async function POST(
         message: validatedData.message,
         expireMinutes: validatedData.expireMinutes,
         imageUrl: validatedData.imageUrl,
-        response: response.text(),
-      });
+        responseStatus: response.status,
+        responseStatusText: response.statusText,
+        error: "Telegram service error",
+      }, null, 2);
       addLog(msg, "error");
-      throw new Error("Telegram service error");
+      throw new Error(msg);
     }
 
     const telegramResponse = await response.json();
