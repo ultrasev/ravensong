@@ -15,6 +15,13 @@ const telegramMessageSchema = z.object({
 // 从 schema 推导出类型
 type TelegramMessage = z.infer<typeof telegramMessageSchema>;
 
+export async function GET(
+  request: Request,
+  { params }: { params: { token: string } }
+) {
+  return NextResponse.json({ message: "Hello, World!" });
+}
+
 export async function POST(
   request: Request,
   { params }: { params: { token: string } }
@@ -35,7 +42,10 @@ export async function POST(
     const validatedData = result.data;
 
     // 添加请求URL调试日志
-    addLog(`Attempting to call Telegram API: ${process.env.TELEGRAM_API_URL}`, "info");
+    addLog(
+      `Attempting to call Telegram API: ${process.env.TELEGRAM_API_URL}`,
+      "info"
+    );
 
     const requestBody = {
       message: validatedData.message,
@@ -66,7 +76,7 @@ export async function POST(
           hasApiToken: !!process.env.API_TOKEN,
           hasTelegramApiUrl: !!process.env.TELEGRAM_API_URL,
           telegramApiUrlLength: (process.env.TELEGRAM_API_URL || "").length,
-        }
+        },
       };
 
       const msg = JSON.stringify(errorDetails, null, 2);
