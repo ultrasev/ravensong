@@ -14,6 +14,7 @@ import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import { LanguageProvider } from "@/components/LanguageContext";
 
 import { Inter } from "next/font/google";
+export const runtime = "edge";
 
 const inter = Inter({
   subsets: ["latin"],
