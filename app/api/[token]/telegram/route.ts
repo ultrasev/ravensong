@@ -88,7 +88,7 @@ export async function POST(
 
     return NextResponse.json(telegramResponse);
   } catch (error) {
-    console.error("Error sending telegram message:", error);
+    addLog("Error sending telegram message:", error as string);
     return NextResponse.json(
       {
         error: error instanceof Error ? error.message : "Internal server error",
