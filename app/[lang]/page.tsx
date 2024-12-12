@@ -1,6 +1,6 @@
 import { Locale } from "@/lib/i18n-config";
 import { young_serif } from "@/app/ui/Font";
-
+import { TelegramUsage } from "./components/TelegramUsage";
 export const runtime = "edge";
 
 function CodeExample({ code }: { code: string }) {
@@ -65,6 +65,7 @@ export default async function Home({ params }: { params: { lang: Locale } }) {
 
         <CodeExample code={code2.toString()} />
         <ShortcodeDoc />
+        <TelegramUsage />
       </div>
     </div>
   );

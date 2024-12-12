@@ -41,7 +41,8 @@
     "sooner": "^1.1.4",
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.2",
