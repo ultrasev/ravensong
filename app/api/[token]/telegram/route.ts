@@ -1,3 +1,4 @@
+import { addLog } from "@/utils/log";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -47,6 +48,13 @@ export async function POST(
     });
 
     if (!response.ok) {
+      const msg = JSON.stringify({
+        message: validatedData.message,
+        expireMinutes: validatedData.expireMinutes,
+        imageUrl: validatedData.imageUrl,
+        response: response.text(),
+      });
+      addLog(msg, "error");
       throw new Error("Telegram service error");
     }
 
