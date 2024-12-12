@@ -34,28 +34,42 @@ export async function POST(
 
     const validatedData = result.data;
 
-    // 发送请求到 Telegram 服务
+    // 添加请求URL调试日志
+    addLog(`Attempting to call Telegram API: ${process.env.TELEGRAM_API_URL}`, "info");
+
+    const requestBody = {
+      message: validatedData.message,
+      expire_minutes: validatedData.expireMinutes,
+      ...(validatedData.imageUrl && { image_url: validatedData.imageUrl }),
+    };
+
+    // 添加请求体调试日志（注意移除敏感信息）
+    addLog(`Request body: ${JSON.stringify(requestBody)}`, "info");
+
     const response = await fetch(process.env.TELEGRAM_API_URL || "", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        message: validatedData.message,
-        expire_minutes: validatedData.expireMinutes,
-        ...(validatedData.imageUrl && { image_url: validatedData.imageUrl }),
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     if (!response.ok) {
-      const msg = JSON.stringify({
+      const errorDetails = {
         message: validatedData.message,
         expireMinutes: validatedData.expireMinutes,
         imageUrl: validatedData.imageUrl,
         responseStatus: response.status,
         responseStatusText: response.statusText,
         error: "Telegram service error",
-      }, null, 2);
+        env: {
+          hasApiToken: !!process.env.API_TOKEN,
+          hasTelegramApiUrl: !!process.env.TELEGRAM_API_URL,
+          telegramApiUrlLength: (process.env.TELEGRAM_API_URL || "").length,
+        }
+      };
+
+      const msg = JSON.stringify(errorDetails, null, 2);
       addLog(msg, "error");
       throw new Error(msg);
     }
