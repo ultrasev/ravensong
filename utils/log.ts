@@ -3,7 +3,7 @@ import { logger } from "@tompz/fastts";
 export async function addLog(content: String, level: String) {
   logger.info(`[${level}]: ${content}`);
   try {
-    const endpoint = "https://logs.ttoo.lol/api/logs/add";
+    const endpoint = "https://logs.cufo.cc/api/logs/add";
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
